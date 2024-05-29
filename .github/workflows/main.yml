@@ -24,4 +24,7 @@ jobs:
     - name: Run code review
       env:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_REPOSITORY: ${{ github.repository }}
+        GITHUB_PULL_REQUEST_URL: ${{ github.event.pull_request.url }}
       run: python .github/scripts/code_review.py
