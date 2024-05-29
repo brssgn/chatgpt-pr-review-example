@@ -2,6 +2,7 @@ import openai
 import os
 import requests
 import json
+import chardet
 
 # Initialize the OpenAI API client
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -51,11 +52,18 @@ def main():
     for file in changed_files:
         try:
             with open(file, 'rb') as f:
-                code = f.read().decode('utf-8')
+                raw_data = f.read()
+                result = chardet.detect(raw_data)
+                encoding = result['encoding']
+                if not encoding:
+                    raise ValueError("Could not detect encoding")
+                code = raw_data.decode(encoding)
                 review = review_code(code)
                 add_comment(pr_url, token, f"Review for `{file}`:\n\n{review}")
-        except UnicodeDecodeError:
-            add_comment(pr_url, token, f"Review for `{file}`:\n\nUnable to decode file content. Skipping review.")
+        except (UnicodeDecodeError, ValueError) as e:
+            add_comment(pr_url, token, f"Review for `{file}`:\n\nUnable to decode file content. Error: {str(e)}")
+        except Exception as e:
+            add_comment(pr_url, token, f"Review for `{file}`:\n\nError reading file. Error: {str(e)}")
 
 if __name__ == "__main__":
     main()
