@@ -19,24 +19,21 @@ def get_pull_request_changes(repo, pr_number):
     response.raise_for_status()
     return response.json()
 
+import openai
+
 def generate_review_text(changes):
     """Use OpenAI API to generate review comments based on code changes."""
     prompt = "Review the following code changes and provide feedback:\n\n"
     prompt += "\n\n".join([f"File: {file['filename']}\n```diff\n{file['patch']}\n```" for file in changes])
     
-    data = {
-        "model": "text-davinci-002",
-        "prompt": prompt,
-        "max_tokens": 150
-    }
-
-    response = requests.post(
-        "https://api.openai.com/v1/engines/davinci/completions",
-        headers={"Authorization": f"Bearer {OPENAI_API_KEY}"},
-        json=data
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "You are a code reviewer."},
+            {"role": "user", "content": prompt}
+        ]
     )
-    response.raise_for_status()
-    return response.json()["choices"][0]["text"]
+    return response['choices'][0]['message']['content']
 
 def post_comment_to_pr(repo, pr_number, comment):
     """Post a comment to a pull request."""
