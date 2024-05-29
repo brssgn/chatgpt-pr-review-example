@@ -12,3 +12,9 @@ extension String {
         Int(self)!
     }
 }
+
+extension Int {
+    var stringValue: String {
+        "\(self)"
+    }
+}
