@@ -16,36 +16,43 @@ def review_code(code):
     return response.choices[0].text.strip()
 
 # Function to get the changed files from the pull request
-def get_changed_files():
-    pr_url = os.getenv("GITHUB_PULL_REQUEST_URL")
-    response = requests.get(pr_url)
+def get_changed_files(pr_url, token):
+    headers = {
+        "Authorization": f"token {token}",
+        "Accept": "application/vnd.github.v3+json"
+    }
+    response = requests.get(pr_url, headers=headers)
+    response.raise_for_status()
     pr_data = response.json()
     files_url = pr_data["url"] + "/files"
-    response = requests.get(files_url)
+    response = requests.get(files_url, headers=headers)
+    response.raise_for_status()
     files_data = response.json()
     return [file["filename"] for file in files_data]
 
 # Function to add a comment to the pull request
-def add_comment(comment):
-    pr_url = os.getenv("GITHUB_PULL_REQUEST_URL")
+def add_comment(pr_url, token, comment):
     comments_url = pr_url + "/comments"
     headers = {
-        "Authorization": f"token {os.getenv('GITHUB_TOKEN')}",
+        "Authorization": f"token {token}",
         "Accept": "application/vnd.github.v3+json"
     }
     data = {
         "body": comment
     }
-    requests.post(comments_url, headers=headers, data=json.dumps(data))
+    response = requests.post(comments_url, headers=headers, data=json.dumps(data))
+    response.raise_for_status()
 
 # Main function
 def main():
-    changed_files = get_changed_files()
+    pr_url = os.getenv("GITHUB_PULL_REQUEST_URL")
+    token = os.getenv("GITHUB_TOKEN")
+    changed_files = get_changed_files(pr_url, token)
     for file in changed_files:
         with open(file, 'r') as f:
             code = f.read()
             review = review_code(code)
-            add_comment(f"Review for `{file}`:\n\n{review}")
+            add_comment(pr_url, token, f"Review for `{file}`:\n\n{review}")
 
 if __name__ == "__main__":
     main()
