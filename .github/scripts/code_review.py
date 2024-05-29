@@ -49,10 +49,13 @@ def main():
     token = os.getenv("GITHUB_TOKEN")
     changed_files = get_changed_files(pr_url, token)
     for file in changed_files:
-        with open(file, 'r') as f:
-            code = f.read()
-            review = review_code(code)
-            add_comment(pr_url, token, f"Review for `{file}`:\n\n{review}")
+        try:
+            with open(file, 'rb') as f:
+                code = f.read().decode('utf-8')
+                review = review_code(code)
+                add_comment(pr_url, token, f"Review for `{file}`:\n\n{review}")
+        except UnicodeDecodeError:
+            add_comment(pr_url, token, f"Review for `{file}`:\n\nUnable to decode file content. Skipping review.")
 
 if __name__ == "__main__":
     main()
