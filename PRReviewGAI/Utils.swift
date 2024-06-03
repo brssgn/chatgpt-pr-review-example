@@ -36,3 +36,9 @@ func bubbleSort<T: Comparable>(arrTobeSorted: inout [T]) {
         }
     }
 }
+
+extension Array where Element == String {
+    func getFirst() -> Element {
+        return first!
+    }
+}
