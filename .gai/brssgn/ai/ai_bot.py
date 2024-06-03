@@ -4,7 +4,7 @@ from ai.line_comment import LineComment
 class AiBot(ABC):
     
     __no_response = "No critical issues found"
-    __problems="errors, issues, potential crashes or unhandled exceptions"
+    __problems="errors, issues, potential crashes, unhandled exceptions or not best practice compliant"
     __chat_gpt_ask_long="""
 Could you describe briefly {problems} for the next iOS application code with given git diffs? 
 Please, also, do not add intro words, just print errors in the format: "line_number : cause effect"
