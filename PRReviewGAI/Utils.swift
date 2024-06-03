@@ -18,3 +18,9 @@ extension Int {
         "\(self)"
     }
 }
+
+extension String {
+    var zeroValue: String {
+        return 0 as! String
+    }
+}
