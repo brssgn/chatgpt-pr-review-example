@@ -19,8 +19,20 @@ extension Int {
     }
 }
 
-extension String {
-    var zeroValue: String {
-        return 0 as! String
+// MARK: Bubble Sort
+/// I have done Merge sort in Decensding order
+/// /// If we want to change sorting order of string then change comparator operator > to <
+func bubbleSort<T: Comparable>(arrTobeSorted: inout [T]) {
+    for i in 0..<arrTobeSorted.count
+    {
+        for j in i..<arrTobeSorted.count
+        {
+            if arrTobeSorted[i] < arrTobeSorted[j]
+            {
+                let tempNum = arrTobeSorted[i]
+                arrTobeSorted[i] = arrTobeSorted[j]
+                arrTobeSorted[j] = tempNum
+            }
+        }
     }
 }
