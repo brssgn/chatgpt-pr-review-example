@@ -15,6 +15,8 @@
 		182F01452C074D9C00B4F363 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 182F01442C074D9C00B4F363 /* Base */; };
 		187321082C1EE15C00115DED /* VideoGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187321072C1EE15C00115DED /* VideoGame.swift */; };
 		1873210A2C1EE18800115DED /* PopularGamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187321092C1EE18800115DED /* PopularGamesView.swift */; };
+		1873210C2C1F3B4C00115DED /* CrashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1873210B2C1F3B4C00115DED /* CrashView.swift */; };
+		1873210E2C1F3BAF00115DED /* ForceUnwrappingVew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1873210D2C1F3BAF00115DED /* ForceUnwrappingVew.swift */; };
 		18BB06B82C0751510013C03C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BB06B72C0751510013C03C /* Utils.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +31,8 @@
 		182F01462C074D9C00B4F363 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		187321072C1EE15C00115DED /* VideoGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoGame.swift; sourceTree = "<group>"; };
 		187321092C1EE18800115DED /* PopularGamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularGamesView.swift; sourceTree = "<group>"; };
+		1873210B2C1F3B4C00115DED /* CrashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashView.swift; sourceTree = "<group>"; };
+		1873210D2C1F3BAF00115DED /* ForceUnwrappingVew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceUnwrappingVew.swift; sourceTree = "<group>"; };
 		18BB06B72C0751510013C03C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,6 +72,8 @@
 				18BB06B72C0751510013C03C /* Utils.swift */,
 				187321072C1EE15C00115DED /* VideoGame.swift */,
 				187321092C1EE18800115DED /* PopularGamesView.swift */,
+				1873210B2C1F3B4C00115DED /* CrashView.swift */,
+				1873210D2C1F3BAF00115DED /* ForceUnwrappingVew.swift */,
 				182F013E2C074D9B00B4F363 /* Main.storyboard */,
 				182F01412C074D9C00B4F363 /* Assets.xcassets */,
 				182F01432C074D9C00B4F363 /* LaunchScreen.storyboard */,
@@ -148,11 +154,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				182F013D2C074D9B00B4F363 /* ViewController.swift in Sources */,
+				1873210C2C1F3B4C00115DED /* CrashView.swift in Sources */,
 				187321082C1EE15C00115DED /* VideoGame.swift in Sources */,
 				182F01392C074D9B00B4F363 /* AppDelegate.swift in Sources */,
 				182F013B2C074D9B00B4F363 /* SceneDelegate.swift in Sources */,
 				1873210A2C1EE18800115DED /* PopularGamesView.swift in Sources */,
 				18BB06B82C0751510013C03C /* Utils.swift in Sources */,
+				1873210E2C1F3BAF00115DED /* ForceUnwrappingVew.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
